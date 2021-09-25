@@ -14,7 +14,7 @@ const solveRec = (l,b) => {
     else 
     {
         console.log("chu vi la: " + rect.perimeter(l,b));
-        console.log("dien tich la: " + rect.area(l,b));
+        console.log("dien tich la :V: " + rect.area(l,b));
     }
 }
 
