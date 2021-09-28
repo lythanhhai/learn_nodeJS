@@ -18,8 +18,6 @@ const solveRec = (l,b) => {
         {
             console.log(reactangle1.perimeter(l,b));
             console.log(reactangle1.area(l,b));
-            console.log(reactangle1.perimeter(l,b));
-            console.log(reactangle1.area(l,b));
         }
     })
 }
