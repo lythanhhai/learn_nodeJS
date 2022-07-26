@@ -21,4 +21,17 @@ readFile('./Content/first.txt', 'utf8', (err, result) => {
         })
     })
 })
+
+function getText() {
+    return new Promise((resolve, reject) => {
+        readFile('./Content/first.txt', 'utf8', (err, result) => {
+            if(err)
+            {
+                reject(err)
+            }
+            resolve(result)
+        })
+    })
+}
 console.log("Starting")
+getText().then(res => console.log(res)).catch(err => console.log(err))

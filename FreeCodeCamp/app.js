@@ -6,9 +6,21 @@
 
 // addValues.addValues()
 
-const _ = require('lodash')
+// const _ = require('lodash')
 
-const items = [1, [2, [3, [4]]]]
+// const items = [1, [2, [3, [4]]]]
 
-const newItems = _.flattenDeep(items);
-console.log(newItems)
+// const newItems = _.flattenDeep(items);
+// console.log(newItems)
+
+const EventEmitter = require("events")
+
+const customEmitter = new EventEmitter()
+
+customEmitter.on('response', () => {
+    console.log(`data received`)
+})
+
+customEmitter.emit('response')
+
+// https://www.youtube.com/watch?v=Oe421EPjeBE&t=25s&ab_channel=freeCodeCamp.org youtube
