@@ -13,14 +13,12 @@
 // const newItems = _.flattenDeep(items);
 // console.log(newItems)
 
-const EventEmitter = require("events")
+const { createReadStream } = require('fs')
 
-const customEmitter = new EventEmitter()
+const stream = createReadStream('./Content/second.txt')
 
-customEmitter.on('response', () => {
-    console.log(`data received`)
+stream.on('data', (result) => {
+    console.log(result)
 })
-
-customEmitter.emit('response')
 
 // https://www.youtube.com/watch?v=Oe421EPjeBE&t=25s&ab_channel=freeCodeCamp.org youtube
