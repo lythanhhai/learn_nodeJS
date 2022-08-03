@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const listUser = require("../db");
 
 const authController = (req, res) => {};
@@ -7,18 +8,34 @@ const postLogin = (req, res) => {
   const password = req.body.password;
 
   const allUser = listUser.User;
+
+  const hashedPassword = md5(password)
   allUser.forEach((user, index) => {
-    if (user.email === email && user.password === password) {
-    //   res.cookie("auth", randomCookie(30));
+    if (user.email === email && user.password === hashedPassword) {
+      res.cookie("auth", randomCookie(30), { signed: true });
+      res.locals.user = user;
       res.status(200).json({ success: true, message: "Login succesful" });
       res.redirect("/Home");
     }
   });
 
   res
-    .status(404)
+    .status(200)
     .json({ success: false, message: "Please check your password or email" });
 };
+
+const postLogout = (req, res) => {
+  if(req.cookies.auth)
+  {
+    res.cookie("auth", "")
+    res.status(200).json({ success: true, message: "Logout succesful" });
+    return
+  }
+  else
+  {
+    res.status(200).json({ success: true, message: "Have you ever logged" });
+  }
+}
 
 function randomCookie(length) {
   var result = "";
@@ -31,4 +48,4 @@ function randomCookie(length) {
   return result;
 }
 
-module.exports = { authController, postLogin };
+module.exports = { authController, postLogin, postLogout };
