@@ -1,4 +1,4 @@
-const md5 = require('md5');
+const md5 = require("md5");
 const listUser = require("../db");
 
 const authController = (req, res) => {};
@@ -9,7 +9,7 @@ const postLogin = (req, res) => {
 
   const allUser = listUser.User;
 
-  const hashedPassword = md5(password)
+  const hashedPassword = md5(password);
   allUser.forEach((user, index) => {
     if (user.email === email && user.password === hashedPassword) {
       res.cookie("auth", randomCookie(30), { signed: true });
@@ -25,17 +25,30 @@ const postLogin = (req, res) => {
 };
 
 const postLogout = (req, res) => {
-  if(req.cookies.auth)
-  {
-    res.cookie("auth", "")
+  if (req.cookies.auth) {
+    res.cookie("auth", "");
     res.status(200).json({ success: true, message: "Logout succesful" });
-    return
-  }
-  else
-  {
+    return;
+  } else {
     res.status(200).json({ success: true, message: "Have you ever logged" });
   }
-}
+};
+
+const sendFile = (req, res) => {
+  if (!req.file && !req.files) {
+    res.status(200).json({ success: true, message: "No file uploaded" });
+  } else if (req.file) {
+    console.log(req.file, req.body);
+    res.status(200).send("Uploaded file successfully");
+  } else if (req.files) {
+    console.log(req.file, req.body);
+    res.status(200).send("Uploaded multiple file successfully");
+  } else {
+    console.log(req.file, req.body);
+    console.log(req.files, req.body);
+    res.status(200).send("Uploaded file successfully 1");
+  }
+};
 
 function randomCookie(length) {
   var result = "";
@@ -48,4 +61,4 @@ function randomCookie(length) {
   return result;
 }
 
-module.exports = { authController, postLogin, postLogout };
+module.exports = { authController, postLogin, postLogout, sendFile };
