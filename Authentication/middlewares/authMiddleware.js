@@ -1,5 +1,5 @@
 const authMiddleware = (req, res, next) => {
-    console.log(req.signedCookies)
+    // console.log(req.signedCookies)
     if(!req.cookies.auth)
     {
         // res.redirect("/login")
