@@ -25,7 +25,9 @@ const postLogin = (req, res) => {
 };
 
 const postLogout = (req, res) => {
-  if (req.cookies.auth) {
+  // console.log(req.cookies)
+  // console.log(req.signedCookies)
+  if (req.signedCookies.auth) {
     res.cookie("auth", "");
     res.status(200).json({ success: true, message: "Logout succesful" });
     return;
@@ -35,18 +37,24 @@ const postLogout = (req, res) => {
 };
 
 const sendFile = (req, res) => {
-  if (!req.file && !req.files) {
+  // if (!req.file && !req.files) {
+  //   res.status(200).json({ success: true, message: "No file uploaded" });
+  // } else if (req.file) {
+  //   console.log(req.file, req.body);
+  //   res.status(200).send("Uploaded file successfully");
+  // } else if (req.files) {
+  //   console.log(req.files, req.body);
+  //   res.status(200).send("Uploaded multiple file successfully");
+  // } else {
+  //   console.log(req.file, req.body);
+  //   console.log(req.files, req.body);
+  //   res.status(200).send("Uploaded file successfully 1");
+  // }
+  if (!req.files) {
     res.status(200).json({ success: true, message: "No file uploaded" });
-  } else if (req.file) {
-    console.log(req.file, req.body);
-    res.status(200).send("Uploaded file successfully");
-  } else if (req.files) {
-    console.log(req.file, req.body);
-    res.status(200).send("Uploaded multiple file successfully");
   } else {
-    console.log(req.file, req.body);
     console.log(req.files, req.body);
-    res.status(200).send("Uploaded file successfully 1");
+    res.status(200).send("Uploaded file successfully");
   }
 };
 

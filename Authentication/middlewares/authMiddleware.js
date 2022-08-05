@@ -1,6 +1,6 @@
 const authMiddleware = (req, res, next) => {
     // console.log(req.signedCookies)
-    if(!req.cookies.auth)
+    if(!req.signedCookies.auth)
     {
         // res.redirect("/login")
         res.status(200).json({ success: true, message: "not ok" })
