@@ -15,3 +15,5 @@ passport.use(new GoogleStrategy({
 
 // oauth2 with expressjs
 // https://www.passportjs.org/packages/
+// https://www.passportjs.org/packages/passport-google-oauth20/
+// https://www.loginradius.com/blog/engineering/google-authentication-with-nodejs-and-passportjs/
